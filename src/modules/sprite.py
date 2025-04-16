@@ -3,6 +3,10 @@ from PIL import ImageTk, Image
 
 import tkinter as tk
 
+#Двойная ротация спрайта с использованием PILL вызывает визуальные артефакты
+#Впрочем, спрайт будет сохраняться в файл, поэтому это никак не будет задействованно
+#spr1.Set_Rotation(45)
+
 class SBTK_Sprite:
     
     def __init__(self, name):

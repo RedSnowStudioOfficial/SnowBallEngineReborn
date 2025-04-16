@@ -1,14 +1,12 @@
 from src.SBTK_CORE import *
+from FPS_Test import FPSMonitor
 
 root = sbtkgamewindow("SnowBallEngineTK")
 
 spr1 = sbtksprite("test")
 spr1.Add_Image_From_Path_Crop("resources/images/Player_Sprites.png", 2, 2, 24, 32)
 spr1.Set_Color_To_Color((64, 192, 64, 255), (0, 0, 0, 0))
-#spr1.Set_Scale(3.6, 3.6)
-
-#Двойная ротация спрайта с использованием PILL вызывает визуальные артефакты
-#spr1.Set_Rotation(45)
+spr1.Set_Scale(3.6, 3.6)
 
 spr2 = sbtksprite("getter")
 spr2.Add_Image_From_Image(spr1.Get_Scaled_Image(6.3, 6.3))
@@ -44,7 +42,9 @@ def game_loop():
     if inputs2.is_pressed["d"]: 
         root.move_object(p2, 0.2, 0)
     
-    #root.canvas.itemconfig(img1, image=spr1.Get_ImageTk())
+    root.canvas.itemconfig(img1, image=spr1.Get_ImageTk())
+
+
 
     root.update_func_misec(game_loop, 1)
 
