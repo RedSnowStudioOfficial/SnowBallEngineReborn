@@ -14,6 +14,9 @@ class SBTK_GameWindow:
     def move_object(self, ID, x, y):
         self.canvas.move_obj(ID, x, y)
     
+    def move_object_to(self, ID, x, y):
+        self.canvas.move_obj_to(ID, x, y)
+
     def update_func_misec(self, func, misec):
         self.canvas.update_func_misec(func, misec)
     

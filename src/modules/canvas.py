@@ -44,6 +44,9 @@ class SBTK_Canvas(tk.Canvas):
     def move_obj(self, ID, x, y):
         self.move(ID, x * self.coef_wh[0], y * self.coef_wh[1])
     
+    def move_obj_to(self, ID, x, y):
+        self.moveto(ID, x * self.coef_wh[0], y * self.coef_wh[1])
+
     def update_func_misec(self, func, misec):
         self.update()
         self.after(int(misec), func)

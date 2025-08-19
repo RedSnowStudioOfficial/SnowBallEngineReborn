@@ -12,7 +12,7 @@ class SBTK_Inputs:
         
         self.set_bindings()
         
-        print("SBTK_Inputs активированна", "\n")
+        print("Inputs активированна", "\n")
 
     def key_pressed(self, event):
         self.is_pressed[event.keysym] = True

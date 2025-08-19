@@ -10,7 +10,7 @@ channel1 = pygame.mixer.Channel(0)
 channel2 = pygame.mixer.Channel(1)
 
 channel1.play(sound1)
-#channel2.play(sound2)
+channel2.play(sound2)
 
 while channel1.get_busy() or channel2.get_busy():
     pygame.time.Clock().tick(10)

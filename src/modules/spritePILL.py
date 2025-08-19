@@ -1,40 +1,32 @@
-from .containters.link_array import Link_Array
 from PIL import ImageTk, Image
-
 import tkinter as tk
 
 #Двойная ротация спрайта с использованием PILL вызывает визуальные артефакты
 #Впрочем, спрайт будет сохраняться в файл, поэтому это никак не будет задействованно
 #spr1.Set_Rotation(45)
 
-class SBTK_Sprite:
+class FramePILL:
     
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, image):
         self.image = None
-        self.imageTk = None
-
         self.resample_method = Image.NEAREST
+        self.nextFrame = None
+        self.prevFrame = None
 
-        self.nextSprite = None
-        self.prevSprite = None
-
-    def Add_Image_From_Path(self, path):
-        if self.image == None:
+    def add_image(self, path):
+        if self.image != None:
+            print("Уже есть картинка")
+        else:
             self.image = Image.open(path)
-            self.imageTk = ImageTk.PhotoImage(self.image)
-        else:
-            print("Уже есть связанная картинка")
 
-    def Add_Image_From_Path_Crop(self, path, x, y, width, height):
+    def add_image_crop(self, path, x, y, width, height):
         
-        if self.image == None:
-            img = Image.open(path)
-            self.image = img.crop((x, y, x+width, y+height))
-            self.imageTk = ImageTk.PhotoImage(self.image)
+        if self.image != None:
+            print("Уже есть картинка")
         else:
-            print("Уже есть связанная картинка")
-
+            crop_image = Image.open(path)
+            self.image = crop_image.crop((x, y, x+width, y+height))
+        
     def Add_Image_From_Image(self, image):
         if self.image == None:
             self.image = image
@@ -112,20 +104,22 @@ class SBTK_Sprite:
             new_height = int(height * scale_y)
             return self.image.resize((new_width, new_height), resample=self.resample_method)
 
-    def Get_Image(self):
-        if self.image == None:
-            print("Нет картинки")
-        else:
-            return self.image
-
-    def Get_ImageTk(self):
+    def get_image(self):
         if self.image == None:
             print("Нет картинки")
             return None
         else:
+            return self.image
+
+    def get_imageTK(self):
+        if self.image == None:
+            print("Нет картинки")
+            return None
+        else:
+            self.imageTk = ImageTk.PhotoImage(self.image)
             return self.imageTk
 
-class SBTK_Sprite_Animation(Link_Array):
+class AnimationPILL(Link_Array):
     
     def __init__(self, name, anim_step, frame_delay, anim_time):
         super().__init__()
