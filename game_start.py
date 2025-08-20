@@ -12,6 +12,8 @@ inputs = sbtkinput(root.window, keys_binds["act_jump"],
                          keys_binds["act_up"],
                          keys_binds["act_down"])
 
+##########TEST
+
 player = PlayerObject(root.canvas, inputs, 100, 100)
 print(player.pos)
 player.draw_in()

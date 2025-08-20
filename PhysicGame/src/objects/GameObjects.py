@@ -166,7 +166,6 @@ class PlayerObject(GameObject):
         #Сенсор Балансировки
         #self.BALANCE_CHECK_SENSOR = SegmentObject(canva, "balance_check_sensor", dir_x=0, dir_y=32, color="red")
         #self.add_child(self.BALANCE_CHECK_SENSOR)
-
         
         self.player_mode = None
         
