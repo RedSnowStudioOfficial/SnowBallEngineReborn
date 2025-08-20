@@ -3,6 +3,11 @@ import tkinter as tk
 
 #Game help
 
+class Vector2:
+      def __init__(self) -> None:
+            self.x : float = 0.0
+            self.y : float = 0.0
+
 def get_sign(x):
         if x >= 0: 
             return 1
