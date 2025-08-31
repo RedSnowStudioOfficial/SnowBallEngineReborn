@@ -23,10 +23,10 @@ rota_test.add_frame_end_crop("run1", images, 2, 74, 56, 32)
 
 #rota_test._Start.image = rota_test._Start.get_mirrored_vertical_image()
 
-rota_test._Start.image = rota_test._Start.get_rotated_90deg_to_left_image()
-rota_test._Start.image = rota_test._Start.get_rotated_90deg_to_left_image()
+rota_test._Start.image = rota_test._Start.get_rotated_image_PIL2TK(45)
+rota_test._Start.image = rota_test._Start.get_rotated_image_PIL2TK(45)
 
-rota_test.scale_all_frames(3)
+#rota_test.scale_all_frames_PILL2TK(2.4)
 
 run = sbtkanimation()
 run.add_frame_end_crop("run1", images, 2, 74, 56, 32)
@@ -42,8 +42,10 @@ run_water.copy_animation("_water", run)
 
 run_water.set_all_frames_pallete(palletes, 0, 2)
 
-run.scale_all_frames(3)
-run_water.scale_all_frames(3)
+run.scale_all_frames_PILL2TK(4.8)
+run.rotate_all_frames_PILL2TK(22)
+run_water.scale_all_frames_PILL2TK(4.8)
+run_water.rotate_all_frames_PILL2TK(22)
 
 root.canvas.create_rectangle(0, 0, 200, 100, fill="white")
 unders = root.canvas.create_image(0, 0, image=run_water._Start.image)

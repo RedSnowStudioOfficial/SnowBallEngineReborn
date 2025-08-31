@@ -1,4 +1,5 @@
 import tkinter as tk
+from PIL import Image, ImageTk
 import math
 
 class FrameTK:
@@ -62,7 +63,7 @@ class FrameTK:
         else:
             return str(self.name)
 
-    def get_scaled_frame(self, scale : int):
+    def get_scaled_image_TK(self, scale : int):
         if self.image == None:
             print("Нет картинки")
         else:
@@ -102,7 +103,7 @@ class FrameTK:
             
             return new_image
 
-    def get_rotated_90deg_to_right_image(self):
+    def get_rotated_90deg_to_right_image_TK(self):
         if self.image == None:
             print("Нет картинки")
         else:
@@ -115,7 +116,7 @@ class FrameTK:
             
             return new_image
 
-    def get_rotated_90deg_to_left_image(self):
+    def get_rotated_90deg_to_left_imag_TK(self):
         if self.image == None:
             print("Нет картинки")
         else:
@@ -127,6 +128,19 @@ class FrameTK:
                     new_image.put('#%02x%02x%02x' % self.image.get(x, y), to=(y, width-x))
             
             return new_image
+
+    def get_rotated_image_PIL2TK(self, angle_deg):
+        pil_image = ImageTk.getimage(self.image)
+        rotated = pil_image.rotate(angle_deg, expand=True, resample=Image.NEAREST)
+        return ImageTk.PhotoImage(rotated)
+
+    def get_scaled_image_PIL2TK(self, scale):
+        pil_image = ImageTk.getimage(self.image)
+        width, height = pil_image.size
+        new_width = int(width * scale)
+        new_height = int(height * scale)
+        scaled = pil_image.resize((new_width, new_height), resample=Image.NEAREST)
+        return ImageTk.PhotoImage(scaled)
 
     def get_mirrored_horizontal_image(self):
         if self.image == None:
@@ -293,13 +307,33 @@ class AnimationTK:
             for x in range(palletes.width()):
                 self.set_all_frames_color(palletes.get(x, old_pallete_y), palletes.get(x, new_pallete_y))
                 p.nextFrame
+    
+    def scale_all_frames_PILL2TK(self, scale):
+            if self._Start != None:
+                p = self._Start
+
+                for i in range(self.get_count_frames()):
+                    p.image = p.get_scaled_image_PIL2TK(scale)
+                    p = p.nextFrame
+
+                print("DONE")
 
     def scale_all_frames(self, scale):
         if self._Start != None:
             p = self._Start
 
             for i in range(self.get_count_frames()):
-                p.image = p.get_scaled_frame(scale)
+                p.image = p.get_scaled_image_TK(scale)
+                p = p.nextFrame
+
+            print("DONE")
+
+    def rotate_all_frames_PILL2TK(self, angle_deg):
+        if self._Start != None:
+            p = self._Start
+
+            for i in range(self.get_count_frames()):
+                p.image = p.get_rotated_image_PIL2TK(angle_deg)
                 p = p.nextFrame
 
             print("DONE")

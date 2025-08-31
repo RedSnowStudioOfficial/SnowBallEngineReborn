@@ -3,19 +3,17 @@ from PhysicGame.src.GameCore import *
 
 root = sbtkgamewindow(win_name=game_name, width=screen_size["width"], height=screen_size["height"], win_bg="blue")
 
-inputs = sbtkinput(root.window, keys_binds["act_jump"], 
-                         keys_binds["act_accept"],
-                         keys_binds["act_back"],
-                         keys_binds["act_special"],
-                         keys_binds["act_left"],
-                         keys_binds["act_right"],
-                         keys_binds["act_up"],
-                         keys_binds["act_down"])
-
-##########TEST
+inputs = sbtkinput(root.window, 
+                    keys_binds["act_jump"], 
+                    keys_binds["act_accept"],
+                    keys_binds["act_back"],
+                    keys_binds["act_special"],
+                    keys_binds["act_left"],
+                    keys_binds["act_right"],
+                    keys_binds["act_up"],
+                    keys_binds["act_down"])
 
 player = PlayerObject(root.canvas, inputs, 100, 100)
-print(player.pos)
 player.draw_in()
 
 

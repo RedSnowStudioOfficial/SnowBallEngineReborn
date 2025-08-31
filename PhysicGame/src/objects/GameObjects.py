@@ -89,7 +89,7 @@ class SegmentObject(GameObject):
         if self.parent == None:
             self.get_object.append(self.SEGMENT)
         else:
-           self.parent.get_object.append(self.SEGMENT)
+           self.parent.get_object = [self.SEGMENT] + self.parent.get_object
 
         self.canva.addtag_withtag(self.name_tag, self.SEGMENT)
 
@@ -117,7 +117,7 @@ class RectangleObject(GameObject):
         if self.parent == None:
             self.get_object.append(self.RECTANGLE)
         else:
-           self.parent.get_object.append(self.RECTANGLE)
+           self.parent.get_object = [self.RECTANGLE] + self.parent.get_object
 
         self.canva.addtag_withtag(self.name_tag, self.RECTANGLE)
 
@@ -213,3 +213,11 @@ class PlayerObject(GameObject):
                 
         #elif left_distance == None and right_distance != None:
         #            return right_tagid, right_distance, right_angle #, "r_floor"
+    
+    def draw_in(self):
+        return super().draw_in()
+    
+class FloorSegment(GameObject):
+    def __init__(self, canva: tk.Canvas, pos_x: float = 0, pos_y: float = 0, name_tag: str = "origin", color: str = "white"):
+        super().__init__(canva, pos_x, pos_y, name_tag, color)
+        pass
