@@ -89,8 +89,9 @@ class SegmentObject(GameObject):
         if self.parent == None:
             self.get_object.append(self.SEGMENT)
         else:
-           self.parent.get_object = [self.SEGMENT] + self.parent.get_object
+           self.parent.get_object.append(self.SEGMENT)
 
+        self.canva.tag_lower(self.SEGMENT)
         self.canva.addtag_withtag(self.name_tag, self.SEGMENT)
 
         return super().draw_in()
@@ -117,9 +118,11 @@ class RectangleObject(GameObject):
         if self.parent == None:
             self.get_object.append(self.RECTANGLE)
         else:
-           self.parent.get_object = [self.RECTANGLE] + self.parent.get_object
+           self.parent.get_object.append(self.RECTANGLE)
 
+        self.canva.tag_lower(self.RECTANGLE)
         self.canva.addtag_withtag(self.name_tag, self.RECTANGLE)
+        
 
         return super().draw_in()
     
@@ -140,33 +143,33 @@ class PlayerObject(GameObject):
                            "y" : 0.0}
         
         self.FLOOR_SPD : float = 0
-        
-        #Хитбокс игрока
-        self.HITBOX = RectangleObject(canva, name_tag="hitbox", width_rad=9, height_rad=19, color="yellow")
-        self.add_child(self.HITBOX)
 
         #Сенсоры пола
         self.LEFT_FLOOR_SENSOR = SegmentObject(canva, name_tag="left_floor_sensor", dir_x=0, dir_y=32, color="green")
         self.RIGHT_FLOOR_SENSOR = SegmentObject(canva, name_tag="right_floor_sensor", dir_x=0, dir_y=32, color="green")
         self.add_child(self.LEFT_FLOOR_SENSOR, -10)
-        #self.add_child(self.RIGHT_FLOOR_SENSOR, 10)
+        self.add_child(self.RIGHT_FLOOR_SENSOR, 10)
 
         #Сенсоры потолка
         self.LEFT_CILING_SENSOR = SegmentObject(canva, name_tag="left_ciling_sensor", dir_x=0, dir_y=-32, color="blue")
         self.RIGHT_CILING_SENSOR = SegmentObject(canva, name_tag="right_ciling_sensor", dir_x=0, dir_y=-32, color="blue")
-        #self.add_child(self.LEFT_CILING_SENSOR, -10)
-        #self.add_child(self.RIGHT_CILING_SENSOR, 10)
+        self.add_child(self.LEFT_CILING_SENSOR, -10)
+        self.add_child(self.RIGHT_CILING_SENSOR, 10)
 
         #Сенсоры Стен
         self.LEFT_WALL_SENSOR = SegmentObject(canva, name_tag="left_wall_sensor", dir_x=-10, dir_y=0, color="purple")
         self.RIGHT_WALL_SENSOR = SegmentObject(canva, name_tag="right_wall_sensor", dir_x=10, dir_y=0, color="purple")
-        #self.add_child(self.LEFT_WALL_SENSOR)
-        #self.add_child(self.RIGHT_WALL_SENSOR)
+        self.add_child(self.LEFT_WALL_SENSOR)
+        self.add_child(self.RIGHT_WALL_SENSOR)
         
         #Сенсор Балансировки
-        #self.BALANCE_CHECK_SENSOR = SegmentObject(canva, "balance_check_sensor", dir_x=0, dir_y=32, color="red")
-        #self.add_child(self.BALANCE_CHECK_SENSOR)
-        
+        self.BALANCE_CHECK_SENSOR = SegmentObject(canva, "balance_check_sensor", dir_x=0, dir_y=32, color="red")
+        self.add_child(self.BALANCE_CHECK_SENSOR)
+
+        #Хитбокс игрока
+        self.HITBOX = RectangleObject(canva, name_tag="hitbox", width_rad=9, height_rad=19, color="purple")
+        self.add_child(self.HITBOX)
+
         self.player_mode = None
         
         self.is_rolling : bool = False

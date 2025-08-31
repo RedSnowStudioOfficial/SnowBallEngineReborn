@@ -134,11 +134,11 @@ class FrameTK:
         rotated = pil_image.rotate(angle_deg, expand=True, resample=Image.NEAREST)
         return ImageTk.PhotoImage(rotated)
 
-    def get_scaled_image_PIL2TK(self, scale):
+    def get_scaled_image_PIL2TK(self, scale_x, scale_y):
         pil_image = ImageTk.getimage(self.image)
         width, height = pil_image.size
-        new_width = int(width * scale)
-        new_height = int(height * scale)
+        new_width = int(width * scale_x)
+        new_height = int(height * scale_y)
         scaled = pil_image.resize((new_width, new_height), resample=Image.NEAREST)
         return ImageTk.PhotoImage(scaled)
 
@@ -308,12 +308,12 @@ class AnimationTK:
                 self.set_all_frames_color(palletes.get(x, old_pallete_y), palletes.get(x, new_pallete_y))
                 p.nextFrame
     
-    def scale_all_frames_PILL2TK(self, scale):
+    def scale_all_frames_PILL2TK(self, scale_x, scale_y):
             if self._Start != None:
                 p = self._Start
 
                 for i in range(self.get_count_frames()):
-                    p.image = p.get_scaled_image_PIL2TK(scale)
+                    p.image = p.get_scaled_image_PIL2TK(scale_x, scale_y)
                     p = p.nextFrame
 
                 print("DONE")

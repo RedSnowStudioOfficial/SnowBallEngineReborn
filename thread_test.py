@@ -42,9 +42,9 @@ run_water.copy_animation("_water", run)
 
 run_water.set_all_frames_pallete(palletes, 0, 2)
 
-run.scale_all_frames_PILL2TK(4.8)
+run.scale_all_frames_PILL2TK(4.8, 2)
 run.rotate_all_frames_PILL2TK(22)
-run_water.scale_all_frames_PILL2TK(4.8)
+run_water.scale_all_frames_PILL2TK(4.8, 2)
 run_water.rotate_all_frames_PILL2TK(22)
 
 root.canvas.create_rectangle(0, 0, 200, 100, fill="white")
